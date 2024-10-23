@@ -1,6 +1,6 @@
 <template>
   <div class="syt-input">
-    <div class="syt-input-content" :style="{width: `${width.width}px`}">
+    <div class="syt-input-content" :style="{width: `${width}px`}">
       <el-icon class="syt-input-content_left" size="20"><Search /></el-icon>
       <el-select
         class="syt-input-content_center"
@@ -39,7 +39,8 @@
   const value = ref('')
   const options = ref([])
   const loading = ref(false)
-  const width = defineProps({width: {type: String, default: '800'}})
+  
+  defineProps(['width'])
       
 </script>
 <style scoped lang='scss'>

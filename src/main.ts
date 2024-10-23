@@ -5,13 +5,15 @@ import '@/assets/css/app.scss'
 import router from '@/router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import "virtual:svg-icons-register";
 
 import {
   SytTop,
   SytContent,
-  SytFooter
+  SytFooter,
+  SytSvg
 } from '@/components'
-const components = [SytTop,SytContent,SytFooter]
+const components = [SytTop,SytContent,SytFooter,SytSvg]
 const app = createApp(App)
 app.use(router)
 app.use(ElementPlus)
