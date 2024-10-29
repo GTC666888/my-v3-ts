@@ -18,5 +18,15 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src')
     }
+  },
+  server: {
+
+    proxy: {
+      '/api': {
+        target: 'http://syt.atguigu.cn',
+        ws: true, // 支持ws协议；websocket的缩写；
+        changeOrigin: true, // 是否跨域
+      }
+    }
   }
 })

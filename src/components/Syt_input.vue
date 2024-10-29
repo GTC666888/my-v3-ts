@@ -1,6 +1,6 @@
 <template>
   <div class="syt-input">
-    <div class="syt-input-content" :style="{width: `${width}px`}">
+    <div class="syt-input-content" :style="{width: `${props.width}px`}">
       <el-icon class="syt-input-content_left" size="20"><Search /></el-icon>
       <el-select
         class="syt-input-content_center"
@@ -10,14 +10,18 @@
         remote
         reserve-keyword
         placeholder="请输入医院名称"
+        :remote-method="remoteMethod"
         :loading="loading"
         style="width: 240px"
+        :fit-input-width="true"
+        popper-class="syt-input-_popper"
+        @change="changeHandle"
       >
         <el-option
           v-for="item in options"
-          :key="item"
-          :label="item"
-          :value="item"
+          :key="item.hoscode"
+          :label="item.hosname"
+          :value="item.hoscode"
         />
       </el-select>
       <div class="syt-input-content_right">
@@ -34,14 +38,28 @@
   } from '@element-plus/icons-vue'
   import { 
     ref,
-    defineProps
+    defineProps,
   } from 'vue'
+  import {
+    getFindByHosName
+  } from '@/api/home'
+  import type {
+    HospitalArr,
+    hospitalListResponesData
+  } from '@/api/home/type'
   const value = ref('')
-  const options = ref([])
+  const options = ref<HospitalArr>([])
   const loading = ref(false)
-  
-  defineProps(['width'])
-      
+  const remoteMethod = (query: string) => {
+    getFindByHosName(query).then( (res:hospitalListResponesData) => {
+      options.value = res.data
+    })
+  }
+  const changeHandle = (val: string) => {
+    console.log(val);
+    
+  }
+  const props = defineProps(['width'])
 </script>
 <style scoped lang='scss'>
   .syt-input {

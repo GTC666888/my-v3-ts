@@ -1,12 +1,11 @@
 <template>
-  <svg :class="svgClass" v-bind="$attrs" :style="{ color: 'red' }">
+  <svg :class="svgClass" v-bind="$attrs" :style="{ color: 'red',fontSize: $props.size + 'px' }">
     <use :href="iconName" />
   </svg>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
-console.log(789);
 
 // 定义属性，传递图标名称、颜色和类名
 const props = defineProps({
@@ -22,10 +21,11 @@ const props = defineProps({
     type: String,
     default: '', // 默认没有类名
   },
+  size: {
+    type: Number,
+    defalut: 16, // 默认大小为 16
+  }
 });
-console.log(props,"props");
-
-
 // 计算属性，根据传入的图标名称生成引用的符号 ID
 const iconName = computed(() => `#icon-${props.name}`);
 </script>

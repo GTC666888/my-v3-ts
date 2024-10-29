@@ -8,6 +8,5 @@
   </div>
 </template>
 <script setup lang="ts">
-import { SytFooter } from './components';
-
+  import { SytFooter } from './components';
 </script>

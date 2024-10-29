@@ -19,12 +19,17 @@
     justify-content: center;
     .syt-content-wrapper {
       box-sizing: border-box;
-      width: 1200px;
-      // overflow-y: auto;
-      overflow: scroll; /* 保留滚动功能 */
+      min-width: 1200px;
+      max-width: 1200px;
+      overflow-x: auto;
+      overflow-y: scroll; /* 保留滚动功能 */
       box-sizing: border-box;
       &::-webkit-scrollbar {
         display: none; /* 隐藏滚动条 (仅限 WebKit 内核) */
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: darkgrey; /* 设置 X 轴滚动条的颜色 */
+        border-radius: 4px; /* 设置 X 轴滚动条的圆角 */
       }
     }
   }
