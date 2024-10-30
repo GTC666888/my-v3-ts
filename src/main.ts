@@ -6,6 +6,7 @@ import router from '@/router'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import "virtual:svg-icons-register";
+import pinia from '@/pinia'
 
 import {
   SytTop,
@@ -15,8 +16,10 @@ import {
 } from '@/components'
 const components = [SytTop,SytContent,SytFooter,SytSvg]
 const app = createApp(App)
+// app.config.globalProperties.$router = router;
 app.use(router)
 app.use(ElementPlus)
+app.use(pinia)
 components.forEach(component => {
   app.component(component.name, component)
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="syt-top">
     <div class="syt-content-top">
-      <div class="syt-content_left">
+      <div class="syt-content_left" @click="useRouter().push('/')">
         <img src="../assets/images/logo.png" alt="">
         <p>尚医通 预约挂号统一平台</p>
       </div>
@@ -22,7 +22,8 @@
 <script setup lang='ts' name="SytTop">
   import 
     SytInput
-   from "./Syt_input.vue";
+  from "./Syt_input.vue";
+  import { useRouter } from "vue-router";
 </script>
 <script lang="ts">
   export default {

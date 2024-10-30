@@ -1,14 +1,8 @@
 // 定义等级和地区码表值数据类型
-// import type {
-//   ResponesData
-// } from '@/types'
+import type {
+  ResponesData
+} from '@/types'
 // 定义码表值数据类型
-
-export interface ResponesData {
-  code: number;
-  message: string;
-  ok: boolean;
-} 
 export interface LevelAndAreaCode {
   "id": number;
   "createTime": string;
@@ -27,7 +21,7 @@ export interface LevelAndAreaCodeResponesData extends ResponesData {
   data: LevelAndAreaCodeArr;
 }
 
-export interface hospital {
+export interface Hospital {
   "id": string,
   "createTime": string,
   "updateTime": string,
@@ -56,7 +50,7 @@ export interface hospital {
     "rule": string[]
   },
 }
-export type HospitalArr = hospital[]
+export type HospitalArr = Hospital[]
 export interface HospitalResponesData extends ResponesData {
   data: {
     content: HospitalArr,

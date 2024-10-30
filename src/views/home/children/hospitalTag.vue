@@ -1,5 +1,5 @@
 <template>
-  <div class="hospital_tag" v-for="item in hospitalList" :key="item.id">
+  <div class="hospital_tag" v-infinite-scroll="load" v-for="item in hospitalList" :key="item.id" @click="tagClick(item)" :infinite-scroll-distance="50">
     <div class="tag-left">
       <div class="name">
         {{ item.hosname }}
@@ -30,24 +30,30 @@
   } from '@/api/home'
   import type {
     HospitalResponesData,
-    HospitalArr
+    HospitalArr,
+    Hospital
   } from '@/api/home/type'
   import emitter from '@/utils/mitt'
+  import { useRouter } from 'vue-router'
+  const router = useRouter()
   let params = ref({
     page: 1,
-    limit: 10,
+    limit: 8,
   })
+  const total = ref(0)
+  const totalElements = ref(0)
   let hospitalList = ref<HospitalArr>([])
   const getHospitalListApi = () => {
     getHospitalList(params.value).then( (res:HospitalResponesData) => {
-      hospitalList.value = res.data.content
+      hospitalList.value.push(...res.data.content)
+      total.value = res.data.totalElements
+      totalElements.value = res.data.totalElements
     })
   }
   onMounted(() => {
     getHospitalListApi()
   })
   emitter.on('hospitalClassChange',(value:any) => {
-    console.log(value.hostype);
     let _value = JSON.parse(JSON.stringify(value))
     Object.keys(_value).forEach( f => {
       if([0,'0'].includes(_value[f])) {
@@ -60,6 +66,15 @@
     }
     getHospitalListApi()
   })
+  const tagClick = (item: Hospital) => {
+    router.push(`/hospital/${item.hoscode}`)
+  }
+  const load = () => {
+    console.log(123);
+    if(hospitalList.value.length < totalElements.value) {
+      getHospitalListApi()
+    }
+  }
 </script>
 <style scoped lang='scss'>
   .hospital_tag {

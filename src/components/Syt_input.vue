@@ -47,6 +47,8 @@
     HospitalArr,
     hospitalListResponesData
   } from '@/api/home/type'
+  import { useRouter } from 'vue-router';
+  const router = useRouter()
   const value = ref('')
   const options = ref<HospitalArr>([])
   const loading = ref(false)
@@ -55,9 +57,8 @@
       options.value = res.data
     })
   }
-  const changeHandle = (val: string) => {
-    console.log(val);
-    
+  const changeHandle = (code: string) => {
+    router.push(`/hospital/${code}`)
   }
   const props = defineProps(['width'])
 </script>
