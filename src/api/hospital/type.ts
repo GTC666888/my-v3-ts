@@ -48,3 +48,69 @@ export interface DepartmentType extends Department {
 export interface DepartmentTypeResponesData extends ResponesData {
   data: DepartmentType
 }
+
+export interface GetBookingScheduleRuleParams {
+  "page": string,
+  "limit": number,
+  "hoscode": string | string[],
+  "depcode": string | string[],
+}
+export interface BookingScheduleList {
+  "workDate": string,
+  "workDateMd": string,
+  "dayOfWeek": string,
+  "docCount": number,
+  "reservedNumber": number,
+  "availableNumber": number,
+  "status": number
+}
+export interface BaseMap {
+  "workDateString": string,
+  "releaseTime": string,
+  "bigname": string,
+  "stopTime": string,
+  "depname": string,
+  "hosname": string
+}
+export interface GetBookingScheduleRuleType {
+  "total": number,
+  "bookingScheduleList": BookingScheduleList[],
+  "baseMap": BaseMap,
+}
+export interface GetBookingScheduleRuleResponesData extends ResponesData {
+  data: GetBookingScheduleRuleType
+}
+
+export interface GetFindScheduleListParams {
+  "hoscode": string | string[],
+  "depcode": string | string[],
+  "date": string,
+}
+
+export interface GetFindScheduleListType {
+  "id": string,
+  "createTime": string,
+  "updateTime": string,
+  "isDeleted": number,
+  "param": {
+    "dayOfWeek": string,
+    "depname": string,
+    "hosname": string
+  },
+  "hoscode": string,
+  "depcode": string,
+  "title": string,
+  "docname": string,
+  "skill": string,
+  "workDate": string,
+  "workTime": number,
+  "reservedNumber": number,
+  "availableNumber": number,
+  "amount": number,
+  "status": number,
+  "hosScheduleId": string
+}
+
+export interface GetFindScheduleListResponesData extends ResponesData {
+  data: GetFindScheduleListType[]
+}

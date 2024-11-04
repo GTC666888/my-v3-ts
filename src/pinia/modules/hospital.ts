@@ -17,13 +17,15 @@ const useHospitalStore = defineStore( ('hospital'),{
     }
   },
   actions: {
-    async getHospitalApi(code: string | string[]) {
-      await getHospital(code).then((res: HospitalTypeResponesData) => {
+    async getHospitalApi(hosCode: string | string[]) {
+      await getHospital(hosCode).then((res: HospitalTypeResponesData) => {
         this.hospitalDetail = res.data
       })
     },
-    async getDepartmentApi(code: string | string[]) {
-      await getDepartment(code).then((res: DepartmentTypeResponesData) => {
+    async getDepartmentApi(hosCode: string | string[]) {
+      console.log(hosCode,"hosCodehosCode");
+      
+      await getDepartment(hosCode).then((res: DepartmentTypeResponesData) => {
         this.departmentDetail = res.data
       })
     }

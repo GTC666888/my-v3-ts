@@ -16,12 +16,12 @@
 <style scoped lang='scss'>
 .registration {
   .title {
-    padding-top: 40px;
+    padding-top: 30px;
     padding-bottom: 20px;
     background: #fff;
     position: -webkit-sticky;
     position: sticky;
-    top: 0;
+    top: 0px;
   }
 }
 </style>

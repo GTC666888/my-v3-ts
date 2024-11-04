@@ -7,6 +7,9 @@ const $http = axios.create({
 })
 //请求拦截器
 $http.interceptors.request.use(request => {
+  
+  request.headers.token = JSON.parse(localStorage.getItem('userInfo') || '{}').token || '';
+  console.log('请求拦截器', request);
   return request;
 }, error => {
   return Promise.reject(error);

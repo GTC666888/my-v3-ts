@@ -5,6 +5,7 @@
       <router-view />
     </SytContent>
     <SytFooter />
+    <SytLogin />
   </div>
 </template>
 <script setup lang="ts">

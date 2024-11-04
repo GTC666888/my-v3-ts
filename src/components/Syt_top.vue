@@ -12,9 +12,22 @@
         <div class="help">
           帮助中心
         </div>
-        <div class="login">
+        <div class="login" @click="useStore.loginVisible = true" v-if="!userInfo.token">
           登录/注册
         </div>
+        <el-dropdown v-else>
+          <span class="el-dropdown-link">
+            {{ userInfo.name || '--' }}
+            <el-icon class="el-icon--right">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item v-for="item in dropdownList" :key="item.id" :divided="item.divided" @click="handleClick(item.id)">{{ item.name }}</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </div>
     </div>
   </div>
@@ -24,6 +37,39 @@
     SytInput
   from "./Syt_input.vue";
   import { useRouter } from "vue-router";
+  import {
+    useUseStore
+  } from '@/pinia/modules/useStore'
+  import { computed, ref } from 'vue'
+  import {
+    ArrowDown
+  } from '@element-plus/icons-vue'
+  const useStore = useUseStore()
+  const userInfo = computed(() => JSON.parse(localStorage.getItem('userInfo') || '{}'))
+  const dropdownList = ref([
+    { id: 1, name: '实名认证' },
+    { id: 2, name: '挂号订单' },
+    { id: 3, name: '就诊人管理' },
+    { id: 4, name: '退出登录', divided: true },
+  ])
+  const handleClick = (id: number) => {
+    console.log(id);
+    switch(id) {
+      case 1:
+        // useRouter().push('/realName')
+        break;
+      case 2:
+        // useRouter().push('/order')
+        break;
+      case 3:
+        // useRouter().push('/doctor')
+        break;
+      case 4:
+        localStorage.removeItem('userInfo')
+        location.reload()
+        break;
+    }
+  }
 </script>
 <script lang="ts">
   export default {
@@ -63,7 +109,7 @@
       align-items: center;
       font-size: 14px;
       color: #666;
-      width: 166px;
+      width: 200px;
       &>div:hover {
         cursor: pointer;
         color: #4490F1;

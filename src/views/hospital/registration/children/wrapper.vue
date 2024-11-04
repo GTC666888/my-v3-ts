@@ -13,7 +13,9 @@
         </div>
         <div class="sub-item-wrapper">
           <div class="sub-item" v-for="(depItem,depIndex) in item.children" :key="depIndex">
-            {{ depItem.depname }}
+            <span @click="depItemClick(depItem)">
+              {{ depItem.depname }}
+            </span>
           </div>
         </div>
       </div>
@@ -25,6 +27,9 @@
     defineProps,
     ref,
   } from 'vue'
+  import { useRouter, useRoute } from 'vue-router'
+  const router = useRouter()
+  const route = useRoute()
   defineProps(['departmentList'])
   const depcode = ref<number>(0)
   const depClick = (code: number) => {
@@ -33,10 +38,16 @@
   }
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
+    console.log(element,"element");
+    
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
+  const depItemClick = (item: any) => {
+    router.push(`/hospital/schedule/${route.params.hosCode}/${item.depcode}`)
+    
+  }
 </script>
 <style scoped lang='scss'>
   .select-dept-wrapper {
