@@ -1,0 +1,54 @@
+html,body {
+  height: 100%;
+  width: 100%;
+  #app {
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    .syt-app {
+      height: 100%;
+      .syt-content {
+        height: calc(100% - 110px);
+      }
+    }
+    
+  }
+}
+
+.syt-title_line {
+  display: flex;
+  align-items: center;
+  &::before {
+    content: "";
+    margin-right: 6px;
+    width: 4px;
+    height: 14px;
+    background-color: #4990f1;
+    border-radius: 2px;
+  }
+}
+.mt60 {
+  margin-top: 60px;
+}
+.mt30 {
+  margin-top: 30px;
+}
+.col999 {
+  color: #999;
+}
+
+.col666 {
+  color: #666;
+}
+
+.col333 {
+  color: #333;
+}
+
+.fz14 {
+  font-size: 14px;
+}
+
+.fz12 {
+  font-size: 12px;
+}

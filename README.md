@@ -1,2 +1,2 @@
-# my-v3-ts
-v3ts
+# Vue 3 + TypeScript + Vite
+v3+ts+vite实操
