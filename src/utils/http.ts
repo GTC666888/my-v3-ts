@@ -1,5 +1,7 @@
 import axios from "axios"
-
+import {
+  useUseStore
+} from '@/pinia/modules/useStore'
 // axios 配置
 const $http = axios.create({
   timeout: 30000, // 超时时间, 单位毫秒
@@ -7,9 +9,8 @@ const $http = axios.create({
 })
 //请求拦截器
 $http.interceptors.request.use(request => {
-  
-  request.headers.token = JSON.parse(localStorage.getItem('userInfo') || '{}').token || '';
-  console.log('请求拦截器', request);
+  const useStroe = useUseStore();
+  request.headers.token = useStroe.userInfo.token || '';
   return request;
 }, error => {
   return Promise.reject(error);

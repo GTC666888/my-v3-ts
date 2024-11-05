@@ -1,7 +1,7 @@
 <template>
   <div class="syt-top">
     <div class="syt-content-top">
-      <div class="syt-content_left" @click="useRouter().push('/')">
+      <div class="syt-content_left" @click="router.push('/')">
         <img src="../assets/images/logo.png" alt="">
         <p>尚医通 预约挂号统一平台</p>
       </div>
@@ -37,6 +37,7 @@
     SytInput
   from "./Syt_input.vue";
   import { useRouter } from "vue-router";
+  
   import {
     useUseStore
   } from '@/pinia/modules/useStore'
@@ -44,8 +45,9 @@
   import {
     ArrowDown
   } from '@element-plus/icons-vue'
+  const router = useRouter()
   const useStore = useUseStore()
-  const userInfo = computed(() => JSON.parse(localStorage.getItem('userInfo') || '{}'))
+  const userInfo = computed(() => useStore.userInfo )
   const dropdownList = ref([
     { id: 1, name: '实名认证' },
     { id: 2, name: '挂号订单' },

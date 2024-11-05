@@ -31,15 +31,18 @@
   ]
   const route = useRoute()
   const router = useRouter()
-  const hosCode = route.params.hosCode
-  console.log(hosCode,'hosCodehosCodehosCodehosCodehosCode');
   
   const menuClick = (url:string) => {
-    router.push(`${url}/${hosCode}`)
+    router.push(`${url}/${hospitalStore.hosCode}`)
   }
   onMounted(() => {
-    hospitalStore.getHospitalApi(hosCode)
-    hospitalStore.getDepartmentApi(hosCode)
+    if(route.params.hosCode) {
+      hospitalStore.hosCode = route.params.hosCode
+    }
+    console.log(hospitalStore.hosCode,"hospitalStore.hosCode");
+    
+    hospitalStore.getHospitalApi(hospitalStore.hosCode)
+    hospitalStore.getDepartmentApi(hospitalStore.hosCode)
   })
   
 </script>

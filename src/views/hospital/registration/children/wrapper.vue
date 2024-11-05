@@ -46,7 +46,6 @@
   };
   const depItemClick = (item: any) => {
     router.push(`/hospital/schedule/${route.params.hosCode}/${item.depcode}`)
-    
   }
 </script>
 <style scoped lang='scss'>

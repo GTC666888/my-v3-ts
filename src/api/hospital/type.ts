@@ -50,7 +50,7 @@ export interface DepartmentTypeResponesData extends ResponesData {
 }
 
 export interface GetBookingScheduleRuleParams {
-  "page": string,
+  "page": number,
   "limit": number,
   "hoscode": string | string[],
   "depcode": string | string[],
@@ -113,4 +113,48 @@ export interface GetFindScheduleListType {
 
 export interface GetFindScheduleListResponesData extends ResponesData {
   data: GetFindScheduleListType[]
+}
+
+export interface GetScheduleType extends GetFindScheduleListType {}
+
+export interface GetScheduleResponesData extends ResponesData {
+  data: GetScheduleType
+}
+
+export interface GetFindAllType {
+  "id": number,
+  "createTime": string,
+  "updateTime": string,
+  "isDeleted": number,
+  "param": {
+      "certificatesTypeString": any,
+      "contactsCertificatesTypeString": string,
+      "cityString": string,
+      "fullAddress": "string",
+      "districtString": string,
+      "provinceString": string
+  },
+  "userId": number,
+  "name": string,
+  "certificatesType": string,
+  "certificatesNo": string,
+  "sex": number,
+  "birthdate": string,
+  "phone": string,
+  "isMarry": number,
+  "provinceCode": string,
+  "cityCode": string,
+  "districtCode": string,
+  "address": string,
+  "contactsName": string,
+  "contactsCertificatesType": string,
+  "contactsCertificatesNo": string,
+  "contactsPhone": string,
+  "isInsure": number,
+  "cardNo": string,
+  "status": string
+}
+
+export interface GetFindAllResponesData extends ResponesData {
+  data: GetFindAllType[]
 }

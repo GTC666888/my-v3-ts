@@ -18,8 +18,8 @@
       </div>
       <div class="wrapper-list">
         <div :class="['calendar-item',{'isActive':item.workDate === findParams.date}]" 
-          v-for="item in bookingSchedule?.bookingScheduleList" 
-          :key="item.workDate" 
+          v-for="(item,index) in bookingSchedule?.bookingScheduleList" 
+          :key="index" 
           @click="bookingScheduleClick(item)">
           <div class="date-wrapper">
             <span>
@@ -40,14 +40,14 @@
         :total="bookingSchedule?.total" 
         :page-size="params.limit" 
         @change="paginationChange"
-        :current-page="params.page"   
+        v-model:current-page="params.page"   
       />
     </div>
     <div class="number-info">
       <div class="info-title">
         上午号源
       </div>
-      <div class="info-list" v-for="item in FindScheduleList" :key="item.workDate">
+      <div class="info-list" v-for="(item,index) in FindScheduleList?.filter( f => f.workTime === 0 )" :key="index">
         <div class="type">
           <div class="leavl">
             <span>
@@ -66,7 +66,34 @@
           <div class="money">
             ￥{{ item.amount }}
           </div>
-          <div class="total">
+          <div class="total" @click="FindScheduleListClick(item)">
+            剩余{{ item.availableNumber }}
+          </div>
+        </div>
+      </div>
+      <div class="info-title mt30">
+        下午号源
+      </div>
+      <div class="info-list" v-for="(item,index) in FindScheduleList?.filter( f => f.workTime === 1 )" :key="index">
+        <div class="type">
+          <div class="leavl">
+            <span>
+              {{ item.title }}
+            </span>
+            <span class="line"></span>
+            <span>
+              {{ item.docname }}
+            </span>
+          </div>
+          <div class="section">
+            {{ item.skill }}
+          </div>
+        </div>
+        <div class="money-and-total">
+          <div class="money">
+            ￥{{ item.amount }}
+          </div>
+          <div class="total" @click="FindScheduleListClick(item)">
             剩余{{ item.availableNumber }}
           </div>
         </div>
@@ -96,8 +123,9 @@
     GetFindScheduleListType,
     BookingScheduleList
   } from '../../../api/hospital/type'
+import router from '@/router';
   const params = ref<GetBookingScheduleRuleParams>({
-    page: '1',
+    page: 1,
     limit: 7,
     hoscode: route.params.hosCode,
     depcode: route.params.depCode,
@@ -137,8 +165,11 @@
     getFindScheduleListApi()
   }
   const paginationChange = (num: number) => {
-    params.value.page = num.toString()
+    params.value.page = num
     getBookingScheduleRuleApi()
+  }
+  const FindScheduleListClick = (item: GetFindScheduleListType) => {
+    router.push(`/hospital/booking/${item.id}`)
   }
 </script>
 <style scoped lang='scss'>

@@ -163,7 +163,6 @@
   const setTime = () => {
     let timeOut = setTimeout(() => {
       console.log('进入',time.value);
-      
       if(time.value > 0) {
         time.value -= 1 
         setTime()
@@ -177,7 +176,7 @@
   const login = () => {
     getLogin(ruleForm).then( (res:any) => {
       useStore.loginVisible = false
-      localStorage.setItem('userInfo', JSON.stringify(res.data));
+      useStore.userInfo = res.data
       location.reload()
     })
   }

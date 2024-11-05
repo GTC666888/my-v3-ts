@@ -30,6 +30,14 @@ export default createRouter({
           }
         },
         {
+          path: '/hospital/booking/:scheduleId',
+          component: () => import('@/views/hospital/booking/index.vue'),
+          meta: {
+            code: 'registration',
+            isToken: true
+          }
+        },
+        {
           path: '/hospital/detail/:hosCode',
           component: () => import('@/views/hospital/detail/index.vue'),
           meta: {

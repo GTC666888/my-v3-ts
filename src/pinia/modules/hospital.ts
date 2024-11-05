@@ -13,9 +13,11 @@ const useHospitalStore = defineStore( ('hospital'),{
   state: () => {
     return {
       hospitalDetail: {} as HospitalType,
-      departmentDetail: {} as DepartmentType
+      departmentDetail: {} as DepartmentType,
+      hosCode: '' as string | string[],
     }
   },
+  persist: true, // 启用持久化
   actions: {
     async getHospitalApi(hosCode: string | string[]) {
       await getHospital(hosCode).then((res: HospitalTypeResponesData) => {
