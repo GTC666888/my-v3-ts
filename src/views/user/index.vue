@@ -24,22 +24,22 @@
   } from '@/components'
   const hospitalStore = useHospitalStore()
   const leftMenu = ref([
-    { id: 1, name: '预约挂号', code: 'registration',url:'/hospital' },
-    { id: 2, name: '医院详情', code: 'detail', url:'/hospital/detail' },
-    { id: 3, name: '预约须知', code: 'notice', url:'/hospital/notice' },
-    { id: 4, name: '停诊信息', code: 'stop', url:'/hospital/stop' },
-    { id: 5, name: '查询/取消', code: 'search', url:'/hospital/search' },
+    { id: 1, name: '实名认证', code: 'feedback',url:'/user/feedback' },
+    { id: 2, name: '挂号订单', code: 'order', url:'/user/order' },
+    { id: 3, name: '就诊人管理', code: 'patient', url:'/user/patient' },
+    { id: 4, name: '修改账号信息', code: 'setAccount', url:'/user/setAccount' },
+    { id: 5, name: '意见反馈', code: 'realName', url:'/user/realName' },
   ])
   const route = useRoute()
   onMounted(() => {
-    if(route.params.hosCode) {
-      hospitalStore.hosCode = route.params.hosCode
-    }
-    hospitalStore.getHospitalApi(hospitalStore.hosCode)
-    hospitalStore.getDepartmentApi(hospitalStore.hosCode)
-    leftMenu.value.forEach(menu => {
-      menu.url = `${menu.url}/${hospitalStore.hosCode}`
-    })
+    // if(route.params.hosCode) {
+    //   hospitalStore.hosCode = route.params.hosCode
+    // }
+    // hospitalStore.getHospitalApi(hospitalStore.hosCode)
+    // hospitalStore.getDepartmentApi(hospitalStore.hosCode)
+    // leftMenu.value.forEach(menu => {
+    //   menu.url = `${menu.url}/${hospitalStore.hosCode}`
+    // })
   })
   
 </script>

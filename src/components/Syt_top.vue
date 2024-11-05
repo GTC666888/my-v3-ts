@@ -58,13 +58,13 @@
     console.log(id);
     switch(id) {
       case 1:
-        // useRouter().push('/realName')
+        router.push('/user/feedback')
         break;
       case 2:
-        // useRouter().push('/order')
+        router.push('/user/order')
         break;
       case 3:
-        // useRouter().push('/doctor')
+        router.push('/user/patient')
         break;
       case 4:
         localStorage.removeItem('userInfo')

@@ -6,6 +6,8 @@ import SytTitle from './Syt_title.vue';
 import SytSvg from './Syt_svg.vue';
 import SytLogin from './Syt_login.vue'; 
 import SytWrapper from './Syt_wrapper.vue'; 
+import SytMenus from './Syt_menus.vue'; 
+import SytUpload from './Syt_upload.vue'; 
 export {
   SytTop,
   SytContent,
@@ -14,5 +16,7 @@ export {
   SytTitle,
   SytSvg,
   SytLogin,
-  SytWrapper
+  SytWrapper,
+  SytMenus,
+  SytUpload
 }

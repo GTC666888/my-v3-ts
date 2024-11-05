@@ -67,5 +67,51 @@ export default createRouter({
         },
       ]
     },
+    {
+      path: '/user',
+      component: () => import('@/views/user/index.vue'),
+      children: [
+        {
+          path: '/user/feedback',
+          component: () => import('@/views/user/feedback/index.vue'),
+          meta: {
+            code: 'feedback',
+            isToken: true
+          }
+        },
+        {
+          path: '/user/order',
+          component: () => import('@/views/user/order/index.vue'),
+          meta: {
+            code: 'order',
+            isToken: true
+          }
+        },
+        {
+          path: '/user/patient',
+          component: () => import('@/views/user/patient/index.vue'),
+          meta: {
+            code: 'patient',
+            isToken: true
+          }
+        },
+        {
+          path: '/user/setAccount',
+          component: () => import('@/views/user/setAccount/index.vue'),
+          meta: {
+            code: 'setAccount',
+            isToken: true
+          }
+        },
+        {
+          path: '/user/realName',
+          component: () => import('@/views/user/realName/index.vue'),
+          meta: {
+            code: 'realName',
+            isToken: true
+          }
+        },
+      ]
+    },
   ]
 })
