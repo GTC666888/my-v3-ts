@@ -9,7 +9,7 @@
     <div class="patient-list">
       <div 
         :class="['patient-item',{isActive:item.certificatesNo === certificatesNo}]" 
-        v-for="(item,index) in findAll" 
+        v-for="(item,index) in useStore.findAllList" 
         :key="index" 
         @click="patientClick(item.certificatesNo)"  
       >
@@ -93,7 +93,7 @@
     用户信息
   </div>
   <div class="content-wrapper">
-    <SytWrapper :options="numOptions" :data="(findAll as GetFindAllType[])?.find(
+    <SytWrapper :options="numOptions" :data="(useStore.findAllList as GetFindAllType[])?.find(
       (f: GetFindAllType) => f.certificatesNo === (certificatesNo)
     )" symbol="：">
     </SytWrapper>
@@ -117,7 +117,6 @@
   } from '@element-plus/icons-vue'
   import {
     getSchedule,
-    getFindAll
   } from '@/api/hospital'
   import {
     useRoute
@@ -125,12 +124,15 @@
   import type {
     GetScheduleResponesData,
     GetScheduleType,
-    GetFindAllResponesData,
     GetFindAllType
   } from '@/api/hospital/type'
   import {
     SytWrapper
   } from '@/components'
+  import {
+    useUseStore
+  } from '@/pinia/modules/useStore'
+  const useStore = useUseStore()
   const route = useRoute()
   const scheduleId = computed(() => route.params.scheduleId)
   const schedule = ref<GetScheduleType>()
@@ -139,16 +141,11 @@
       schedule.value = res.data
     })
   }
-  const findAll = ref<GetFindAllType[]>()
-  const getFindAllApi = () => {
-    getFindAll().then( (res:GetFindAllResponesData) => {
-      findAll.value = res.data
-      certificatesNo.value = findAll.value[0].certificatesNo
-    })
-  }
-  onMounted(() => {
-    getScheduleApi()
-    getFindAllApi()
+
+  onMounted( async () => {
+    await getScheduleApi()
+    await useStore.getFindAllApi()
+    certificatesNo.value = await useStore.findAllList&&useStore.findAllList[0].certificatesNo
   })
 
   const certificatesNo = ref<string>()
@@ -170,7 +167,7 @@
     { label: '就诊人手机号', props: 'phone', labelWidth: '100px' },
   ]
   const setFind = (type: keyof GetFindAllType) => {
-    return (findAll.value as GetFindAllType[])?.find(
+    return (useStore.findAllList as GetFindAllType[])?.find(
       (f: GetFindAllType) => f.certificatesNo === (certificatesNo.value)
     )?.[type] || ' '
   }

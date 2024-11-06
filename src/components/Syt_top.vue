@@ -12,7 +12,7 @@
         <div class="help">
           帮助中心
         </div>
-        <div class="login" @click="useStore.loginVisible = true" v-if="!userInfo.token">
+        <div class="login" @click="useStore.loginVisible = true" v-if="!userInfo?.token">
           登录/注册
         </div>
         <el-dropdown v-else>
@@ -67,8 +67,13 @@
         router.push('/user/patient')
         break;
       case 4:
-        localStorage.removeItem('userInfo')
-        location.reload()
+        // localStorage.removeItem('userInfo')
+        useStore.userInfo = {
+          name: '',
+          token: '',
+        }
+        // location.reload()
+        router.push('/')
         break;
     }
   }
