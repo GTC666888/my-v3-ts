@@ -87,6 +87,10 @@
     OrderInfoTypeResponesData,
     OrderInfoType
   } from '@/api/user/type'
+  import {
+    useRouter
+  } from 'vue-router'
+  const router = useRouter()
   const params = ref({
     orderStatus: '',
     patientId: '',
@@ -129,8 +133,7 @@
     getOrderInfoApi()
   }
   const handleDetail = (row: OrderInfoType) => {
-    console.log({row});
-    
+    router.push(`/user/orderDetails/${row.id}`)
   }
 </script>
 <style scoped lang='scss'>

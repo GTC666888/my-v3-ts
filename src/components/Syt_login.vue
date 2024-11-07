@@ -1,7 +1,4 @@
 <template>
-  <!-- <Transition name="fade" mode="out-in" appear>
-    
-  </Transition> -->
   <Teleport to="body" v-if="visible">
     <div  class="login-dialog" @click="handleClickOutside">
       <div class="login-dialog-content" id="slideBox" ref="popup">

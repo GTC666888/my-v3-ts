@@ -11,18 +11,12 @@
   </div>
 </template>
 <script setup lang='ts'>
-  import { 
-    useRoute,
-  } from 'vue-router'
   import {
-    onMounted,
     ref
   } from 'vue'
-  import useHospitalStore from '@/pinia/modules/hospital'
   import {
     SytMenus
   } from '@/components'
-  const hospitalStore = useHospitalStore()
   const leftMenu = ref([
     { id: 1, name: '实名认证', code: 'feedback',url:'/user/feedback' },
     { id: 2, name: '挂号订单', code: 'order', url:'/user/order' },
@@ -30,17 +24,6 @@
     { id: 4, name: '修改账号信息', code: 'setAccount', url:'/user/setAccount' },
     { id: 5, name: '意见反馈', code: 'realName', url:'/user/realName' },
   ])
-  const route = useRoute()
-  onMounted(() => {
-    // if(route.params.hosCode) {
-    //   hospitalStore.hosCode = route.params.hosCode
-    // }
-    // hospitalStore.getHospitalApi(hospitalStore.hosCode)
-    // hospitalStore.getDepartmentApi(hospitalStore.hosCode)
-    // leftMenu.value.forEach(menu => {
-    //   menu.url = `${menu.url}/${hospitalStore.hosCode}`
-    // })
-  })
   
 </script>
 <style scoped lang='scss'>

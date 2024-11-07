@@ -88,6 +88,14 @@ export default createRouter({
           }
         },
         {
+          path: '/user/orderDetails/:orderId',
+          component: () => import('@/views/user/orderDetails/index.vue'),
+          meta: {
+            code: 'order',
+            isToken: true
+          }
+        },
+        {
           path: '/user/patient',
           component: () => import('@/views/user/patient/index.vue'),
           meta: {

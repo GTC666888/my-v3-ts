@@ -27,7 +27,7 @@ $http.interceptors.request.use(request => {
 // 回调拦截器
 $http.interceptors.response.use(
 response => {
-  if(response.data.code === 201) {
+  if([201,225].includes(response.data.code)) {
     msg(response.data.message)
     new Error(response.data.message);
     return Promise.reject(response.data.message);

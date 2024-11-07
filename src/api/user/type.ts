@@ -80,3 +80,52 @@ export interface OrderInfoTypeResponesData extends ResponesData {
     "total": number
   }
 }
+
+export interface OrderDetailsType {
+  "id": number,
+  "createTime": string,
+  "updateTime": string,
+  "isDeleted": number,
+  "param": {
+      "orderStatusString": string
+  },
+  "userId": number,
+  "outTradeNo": string,
+  "hoscode": string,
+  "hosname": string,
+  "depcode": string,
+  "depname": string,
+  "scheduleId": string,
+  "title": string,
+  "reserveDate": string,
+  "reserveTime": number,
+  "patientId": number,
+  "patientName": string,
+  "patientPhone": string,
+  "hosRecordId": string,
+  "number": number,
+  "fetchTime": string,
+  "fetchAddress": string,
+  "amount": number,
+  "quitTime": string,
+  "orderStatus": number
+}
+
+export interface OrderDetailsResponesData extends ResponesData {
+  "data": OrderDetailsType
+}
+
+export interface OrderCancelResponesData extends ResponesData {
+  "data": boolean
+}
+
+export interface createNativeType {
+  "codeUrl": string,
+  "orderId": number,
+  "totalFee": number,
+  "resultCode": string
+}
+
+export interface createNativeResponesData extends ResponesData {
+  "data": createNativeType
+}

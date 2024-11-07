@@ -8,6 +8,7 @@ import SytLogin from './Syt_login.vue';
 import SytWrapper from './Syt_wrapper.vue'; 
 import SytMenus from './Syt_menus.vue'; 
 import SytUpload from './Syt_upload.vue'; 
+import SytPay from './Syt_pay.vue'; 
 export {
   SytTop,
   SytContent,
@@ -18,5 +19,6 @@ export {
   SytLogin,
   SytWrapper,
   SytMenus,
-  SytUpload
+  SytUpload,
+  SytPay
 }

@@ -1,6 +1,6 @@
 <template>
-  <svg :class="svgClass" :fill="color" v-bind="$attrs" :style="{ fontSize: $props.size + 'px' }">
-    <use :href="iconName" />
+  <svg :class="svgClass" :fill="color" v-bind="$attrs" :style="{ fontSize: $props.size + 'px', fontWeight: $props.fontWeight }">
+    <use :href="iconName" stroke-width="3" />
   </svg>
 </template>
 
@@ -24,6 +24,10 @@ const props = defineProps({
   size: {
     type: Number,
     defalut: 16, // 默认大小为 16
+  },
+  fontWeight: {
+    type: String,
+    default: 'normal', // 默认字体粗细为正常
   }
 });
 // 计算属性，根据传入的图标名称生成引用的符号 ID
